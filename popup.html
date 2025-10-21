@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Fight for Focus</h1>
+
+    <div class="section">
+      <h2>Quick Block Current Site</h2>
+      <div class="current-site">
+        <span id="currentSite">Loading...</span>
+        <button id="blockCurrentSite" class="btn btn-danger">Block This Site</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Add Site to Block</h2>
+      <div class="add-site">
+        <input type="text" id="siteInput" placeholder="e.g., facebook.com" />
+        <button id="addSite" class="btn btn-primary">Block Site</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Blocked Sites</h2>
+      <div id="sitesList" class="sites-list">
+        <!-- Sites will be populated here -->
+      </div>
+    </div>
+
+    <div class="footer">
+      <button id="pauseExtension" class="btn btn-warning">Pause Blocking</button>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+// Rick Rubin quotes
+const quotes = [
+  "The object isn't to make art, it's to be in that wonderful state which makes art inevitable.",
+  "Look for what you notice but no one else sees.",
+  "Zoom in and obsess. Zoom out and observe. We get to choose.",
+  "Don't give distractions any energy. Let them pass, like clouds parting around a mountain.",
+  "The ability to look deeply is the root of creativity.",
+  "Pay attention to what you're paying attention to.",
+  "We're not playing to win, we're playing to play.",
+  "Lower the stakes.",
+  "All that matters is that you are making something you love, to the best of your ability, here and now.",
+  "The goal is not to be different, but to be yourself.",
+  "In terms of priority, inspiration comes first. You come next. The audience comes last.",
+  "Patience is accepting that the majority of the work we do is out of our control.",
+  "If you have an idea you're excited about, you're 90% of the way there.",
+  "The work reveals itself as you go. It tells you what it wants to be.",
+  "Living life as an artist is a practice. You are either engaging in the practice, or you're not.",
+  "Failure is the information you need to get where you're going.",
+  "The best work is the work you are excited about.",
+  "Discipline and freedom seem like opposites. In reality, they are partners.",
+  "Distraction is not procrastination. Distraction is a strategy in service of the work.",
+  "Notice the clouds.",
+  "The universe is only as large as our perception of it.",
+  "Rules direct us to average behaviors. If we're aiming to create works that are exceptional, most rules don't apply.",
+  "It's helpful to see the piece we're working on as an experiment.",
+  "The magic is not in the analyzing or the understanding. The magic lives in the wonder of what we do not know.",
+  "You are the only audience that matters.",
+  "Creativity is a fundamental aspect of being human. It's our birthright.",
+  "Sometimes the mistakes are what makes a work great. Humanity breathes in mistakes.",
+  "The goal of art isn't to attain perfection. The goal is to share who we are.",
+  "No matter what tools you use to create, the true instrument is you.",
+  "If you start from the position that there is no right or wrong, no good or bad, it's easier to submerge yourself joyfully in the process.",
+  "Finishing our work is a good habit to develop. It boosts confidence.",
+  "We can't force greatness to happen. All we can do is invite it in and await it actively.",
+  "Belief carries disproportional energy.",
+  "To create is to bring something into existence that wasn't there before.",
+  "A river of material flows through us. When we share our works and our ideas, they are replenished.",
+  "The way we do anything is the way we do everything.",
+  "If you begin with a question and use it to guide an adventure of discovery, that's the work of the artist.",
+  "Inspiration tends to show up in play.",
+  "Create an environment where you're free to express what you're afraid to express.",
+  "Sometimes disengagement is the best way to engage.",
+  "The goal is to live your life in the service of art.",
+  "Do what you can with what you have. Nothing more is needed.",
+];
+
+// Display a random quote when page loads
+document.addEventListener("DOMContentLoaded", () => {
+  const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+  document.getElementById("quote").innerHTML = `"${randomQuote}"`;
+});
