@@ -4,22 +4,37 @@
 let blockedSitesCache = new Set();
 let isPausedCache = false;
 
-// Initialize storage and cache
-chrome.runtime.onInstalled.addListener(() => {
+// Initialize cache function
+function initializeCache() {
   chrome.storage.local.get(['blockedSites', 'isPaused'], (result) => {
     if (!result.blockedSites) {
       chrome.storage.local.set({ blockedSites: [] });
+      blockedSitesCache = new Set();
     } else {
       blockedSitesCache = new Set(result.blockedSites);
     }
 
     if (result.isPaused === undefined) {
       chrome.storage.local.set({ isPaused: false });
+      isPausedCache = false;
     } else {
       isPausedCache = result.isPaused;
     }
   });
+}
+
+// Initialize on install/update
+chrome.runtime.onInstalled.addListener(() => {
+  initializeCache();
 });
+
+// IMPORTANT: Also initialize on startup (when Chrome starts)
+chrome.runtime.onStartup.addListener(() => {
+  initializeCache();
+});
+
+// Also initialize immediately when script loads (covers all cases)
+initializeCache();
 
 // Update cache when storage changes
 chrome.storage.onChanged.addListener((changes, namespace) => {
@@ -34,7 +49,7 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
 });
 
 // Check every tab update
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
   // Only check when URL changes and it's a real URL
   if (changeInfo.url &&
       !changeInfo.url.startsWith('chrome://') &&
@@ -104,7 +119,7 @@ function redirectToBlockedPage(tabId, originalUrl) {
 }
 
 // Listen for messages from popup
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((request, _, sendResponse) => {
   if (request.action === 'getCurrentTab') {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       if (tabs[0]) {
